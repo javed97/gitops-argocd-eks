@@ -35,3 +35,11 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# Extra safety
+docs/screenshots/*.local.*
+*.swp
+.DS_Store
+**/kubeconfig
+**/.aws/
+**/.env
