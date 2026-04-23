@@ -1,0 +1,10 @@
+# Trivy ignore file for gitops-demo-app
+#
+# CVEs listed here are acknowledged, reviewed, and accepted.
+# Each entry must include: the CVE ID, the package affected,
+# the reason for acceptance, and a review date.
+#
+# Format: one CVE per line. Blank lines and # comments allowed.
+#
+# Example (remove if empty):
+# CVE-2024-XXXXX  # ip package via bundled npm — Node team not patching, low exploitability in our context — reviewed 2026-04-23
