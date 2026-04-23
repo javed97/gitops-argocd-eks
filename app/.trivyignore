@@ -1,10 +1,26 @@
 # Trivy ignore file for gitops-demo-app
 #
-# CVEs listed here are acknowledged, reviewed, and accepted.
-# Each entry must include: the CVE ID, the package affected,
-# the reason for acceptance, and a review date.
+# CVEs listed here are acknowledged, reviewed, and accepted with documented
+# justifications. Each entry must include: CVE ID, affected package, reason
+# for acceptance, and next review date.
+
+# ──────────────────────────────────────────────────────────────────────────
+# CVE-2026-33671: picomatch ReDoS via crafted extglob patterns
+# Package: picomatch (transitive via npm tooling)
+# Severity: HIGH
 #
-# Format: one CVE per line. Blank lines and # comments allowed.
+# Reason for acceptance:
+# picomatch performs glob pattern matching on user-supplied inputs. Our app
+# (gitops-demo-app) exposes three endpoints: /, /healthz, and /metrics.
+# None of these accept glob patterns, regex, or filesystem path inputs from
+# callers. The attack surface for exploiting this ReDoS is therefore zero in
+# our context — picomatch is not reachable from any user-controlled input path.
 #
-# Example (remove if empty):
-# CVE-2024-XXXXX  # ip package via bundled npm — Node team not patching, low exploitability in our context — reviewed 2026-04-23
+# Mitigation plan:
+# Next Node.js / npm release cycle may propagate the fixed picomatch
+# (>=4.0.4) through the transitive dependency tree automatically. Re-scan
+# and remove this entry when that happens.
+#
+# Next review: 2026-07-23
+# Ref: https://avd.aquasec.com/nvd/cve-2026-33671
+CVE-2026-33671
